@@ -2,7 +2,8 @@ import tensorflow.keras as keras
 from tensorflow.keras.layers import Input,ZeroPadding2D,Conv2D,MaxPooling2D,BatchNormalization,Activation,UpSampling2D,Add,Lambda,Concatenate
 from tensorflow.keras.layers import Reshape,TimeDistributed,Dense,Conv2DTranspose
 from tensorflow.keras.models import Model
-import tensorflow.keras.backend as K
+# import tensorflow.keras.backend as K
+import tensorflow.keras.layers as KL
 from nets.resnet import get_resnet
 from nets.layers import ProposalLayer,PyramidROIAlign,DetectionLayer,DetectionTargetLayer
 from nets.mrcnn_training import *
@@ -280,7 +281,7 @@ def get_train_model(config):
     input_gt_boxes = Input(shape=[None, 4], name="input_gt_boxes", dtype=tf.float32)
 
     # 标准化到0-1之间
-    gt_boxes = Lambda(lambda x: norm_boxes_graph(x, K.shape(input_image)[1:3]))(input_gt_boxes)
+    gt_boxes = KL.Lambda(lambda x: norm_boxes_graph(x, K.shape(input_image)[1:3]))(input_gt_boxes)
 
     # mask语义分析信息
     # [batch, height, width, MAX_GT_INSTANCES]
