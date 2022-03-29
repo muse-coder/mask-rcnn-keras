@@ -35,3 +35,9 @@ b、测试自身代码时将_defaults里面的参数修改成训练时用的参�
 
 ### Reference
 https://github.com/matterport/Mask_RCNN
+
+
+### 数据集修改
+model_data/shape_classes.txt 文件的类别需要修改
+dataset.py load_shape类需要修改
+dataset.py load_mask类需要修改

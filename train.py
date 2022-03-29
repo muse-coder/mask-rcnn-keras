@@ -32,7 +32,7 @@ class ShapesConfig(Config):
     # 请各位注意哈！
     IMAGES_PER_GPU = 1
     # BATCH_SIZE = 1
-    NUM_CLASSES = 1 + 3
+    NUM_CLASSES = 1 +2
     RPN_ANCHOR_SCALES = (16, 32, 64, 128, 256)
     IMAGE_MIN_DIM = 512
     IMAGE_MAX_DIM = 512

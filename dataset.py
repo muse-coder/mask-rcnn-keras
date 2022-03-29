@@ -33,9 +33,8 @@ class ShapesDataset(Dataset):
 
     #并在self.image_info信息中添加了path、mask_path 、yaml_path
     def load_shapes(self, count, img_floder, mask_floder, imglist, yaml_floder):
-        self.add_class("shapes", 1, "circle")
-        self.add_class("shapes", 2, "square")
-        self.add_class("shapes", 3, "triangle")
+        self.add_class("shapes", 1, "patches")
+        self.add_class("shapes", 2, "scratches")
         for i in range(count):
             img = imglist[i]
             if img.endswith(".jpg"):
@@ -55,11 +54,9 @@ class ShapesDataset(Dataset):
         labels=self.from_yaml_get_class(image_id)
         labels_form=[]
         for i in range(len(labels)):
-            if labels[i].find("circle")!=-1:
-                labels_form.append("circle")
-            elif labels[i].find("square")!=-1:
-                labels_form.append("square")
-            elif labels[i].find("triangle")!=-1:
-                labels_form.append("triangle")
+            if labels[i].find("patches")!=-1:
+                labels_form.append("patches")
+            elif labels[i].find("scratches")!=-1:
+                labels_form.append("scratches")
         class_ids = np.array([self.class_names.index(s) for s in labels_form])
         return mask, class_ids.astype(np.int32)
